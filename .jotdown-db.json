@@ -1,0 +1,46 @@
+{
+  "todos": [
+    {
+      "id": 1,
+      "desc": "TEST: Simple task @important",
+      "tag": "@important",
+      "status": "in-progress",
+      "modified": "2024-06-23T17:51:11.944725"
+    },
+    {
+      "id": 2,
+      "desc": "TEST: Simple task number 2 @today",
+      "tag": "@today",
+      "status": "in-progress",
+      "modified": "2024-06-23T18:51:18.338112"
+    },
+    {
+      "id": 3,
+      "desc": "TEST: Simple task number 3 @tomorrow",
+      "tag": "@tomorrow",
+      "status": "in-progress",
+      "modified": "2024-06-23T18:52:03.538846"
+    },
+    {
+      "id": 4,
+      "desc": "TEST: Simple task number 4 @overdue",
+      "tag": "@overdue",
+      "status": "in-progress",
+      "modified": "2024-06-23T18:56:15.453598"
+    },
+    {
+      "id": 5,
+      "desc": "TEST: Simple pramod.jingade@gmail.com task number @today",
+      "tag": "@today",
+      "status": "done",
+      "modified": "2024-06-24T00:30:16.203945"
+    },
+    {
+      "id": 6,
+      "desc": "This is a simple todo without annotations",
+      "tag": null,
+      "status": "in-progress",
+      "modified": "2024-06-24T00:44:47.381594"
+    }
+  ]
+}
