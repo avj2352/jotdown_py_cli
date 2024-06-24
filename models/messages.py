@@ -9,12 +9,13 @@ LIST_COMPLETED_TODOS: str = f"\n[bold purple]✏️ Completed Todos[/bold purple
 LIST_ALL_TODOS: str = f"\n[bold purple]✏️ Todos[/bold purple]\n"
 LIST_REMAINING_TODOS: str = f"\n[bold purple]✏️ Remaining Todos[/bold purple]\n"
 
-# add, rm, clear messages
+# add, rm, clear, move messages
 TODO_ITEM_ADDED: str = f"\n [italic cyan] ✏️ added todo item !![/italic cyan]\n"
 TODO_ITEM_REMOVED: str = f"\n [italic cyan] ✏️ removed todo item !![/italic cyan]\n"
 TODO_ITEMS_CLEAR_PROMPT: str = f"🤔 Are you sure you want to clear todo items?"
 TODO_ITEMS_CLEARED: str = f"\n [italic cyan] ✏️ cleared todo items !![/italic cyan]\n"
 TODO_ITEMS_CLEAR_ABORT: str = f"\n [italic cyan]  Aborted clearing todo items !![/italic cyan]\n"
+TODO_ITEMS_MOVE: str = f"\n [italic cyan] ✏️ moved todo item !![/italic cyan]\n"
 
 # mark messages
 TODO_ITEM_CHECKED: str = f"\n [italic cyan] ✏️ todo item completed !![/italic cyan]\n"

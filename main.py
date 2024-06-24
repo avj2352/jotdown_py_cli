@@ -51,7 +51,7 @@ def undo(pos: Annotated[int, typer.Argument(help=f"todo item number or position"
 @app.command(short_help="move task items from source to destination")
 def mv(src: Annotated[int, typer.Argument(help=f"source position")],
        dst: Annotated[int, typer.Argument(help=f"destination position")]):
-    typer.echo(f"move task items from source to destination")
+    todo_mark_handler.move(src, dst)
 
 
 # rm
@@ -72,7 +72,7 @@ def clear():
 # renumber todo items
 @app.command(short_help="renumber todo items' position")
 def renumber():
-    todo_mark_handler.renumber_todos()
+    todo_mark_handler.renumber_todos(display=True)
 
 
 # sort todo items
