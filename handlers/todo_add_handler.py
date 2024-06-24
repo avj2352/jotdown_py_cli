@@ -8,11 +8,13 @@ from models.todo import Todo
 from datetime import datetime
 from rich import console
 from handlers.todo_list_handler import get_todo_list
+from util.helper import extract_word_with_at
 
 console = console.Console()
 
 
-def add_todo_item(text: str, tag: Optional[str]):
+def add_todo_item(text: str):
+    tag: Optional[str] = extract_word_with_at(text)
     todo_list = get_todo_list()
     if todo_list is None or len(todo_list) == 0:
         todo_list: List[Todo] = []

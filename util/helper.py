@@ -3,7 +3,7 @@ Set of helper functions
 """
 import re
 from typing import Optional
-from models.todo import tag_color_map
+from models.todo import tag_color_map, Todo
 from rich.console import Console
 from rich.text import Text
 from rich.markdown import Markdown
@@ -40,41 +40,45 @@ def extract_word_with_colon(text: str) -> Optional[str]:
     return "".join(words[0])
 
 
-# highlight text with tag
-def highlight_text_with_colon(text: str, colon: str) -> Text:
-    # Create a Text object with default styling
-    default_text = text.replace(colon, "")
-    # Highlight the specific word using a custom style
-    highlighted_colon = Text(colon, style=f"bold cyan")
-
-    # Combine the default and highlighted parts for rich output
+# highlight text with colon if present
+def highlight_text_with_colon(text: str) -> Text:
     rich_text = Text("")
-    rich_text += highlighted_colon
-    rich_text += Text(default_text)
+    colon = extract_word_with_colon(text)
+    if colon is not None:
+        # Create a Text object with default styling
+        text = text.replace(colon, "")
+        # Highlight the specific word using a custom style
+        highlighted_colon = Text(colon, style=f"bold cyan")
+        # Combine the default and highlighted parts for rich output
+        rich_text += highlighted_colon
+    rich_text += Text(text)
     return rich_text
 
 
-# highlight text with tag
-def highlight_text(pos: int, text: str, tag: Optional[str], status: str) -> Text:
-    # Create a Text object with default styling
-    default_text = text
-    highlighted_tag = Text("")
-    if tag is not None:
-        default_text = text.replace(tag, "")
-        # Highlight the specific word using a custom style
-        highlighted_tag = Text(tag, style=f"bold {tag_color_map[tag]}")
-    # Assign default text
+# highlight text with status
+def highlight_text_with_status(pos: int, status: str) -> Text:
     rich_text = Text(f"{pos} ")
     rich_text += Text(f"{"❌" if status == "in-progress" else "✅"}  ")
-    # add highlighted colon, if present
-    colon = extract_word_with_colon(default_text)
-    if colon is not None:
-        rich_text += highlight_text_with_colon(default_text, colon)
-    else:
-        rich_text += Text(default_text)
-    # add highlighted tag, if present
-    if tag is not None:
-        rich_text += highlighted_tag
+    return rich_text
+
+
+# Highlight tag using a tag_color_map
+def highlight_text_with_tag(tag: str) -> Text:
+    return Text(tag, style=f"bold {tag_color_map[tag]}")
+
+
+# highlight text
+def highlight_text(item: Todo) -> Text:
+    # First trim tag if present...
+    if item['tag'] is not None:
+        item['desc'] = item['desc'].replace(item['tag'], "")
+    # ...Next add status
+    rich_text = highlight_text_with_status(item['id'], item['status'])
+    # ...Next highlight colon if present
+    rich_text += highlight_text_with_colon(item['desc'])
+    # ...Next highlight tag if present
+    if item['tag'] is not None:
+        rich_text += highlight_text_with_tag(item['tag'])
     return rich_text
 
 
