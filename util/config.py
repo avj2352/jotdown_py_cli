@@ -52,7 +52,15 @@ def parse_file() -> Optional[dict]:
         return None
 
 
-# write todo list to file
+# read todos from the file
+def get_todo_list() -> Optional[List[Todo]]:
+    data = parse_file()
+    if data is not None:
+        return data.get('todos')
+    return None
+
+
+# write / overwrite todo list to file
 def write_todo_list_to_file(data_list: List[Todo]):
     try:
         with open(DB_JSON_FILE, "w") as f:
