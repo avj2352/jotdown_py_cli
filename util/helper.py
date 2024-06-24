@@ -56,9 +56,14 @@ def highlight_text_with_colon(text: str) -> Text:
 
 
 # highlight text with status
+# NOTE: on windows cmd prompt / git bash terminal don't support rich emoji fonts
+# so highlighting unicode emoji with red and green color
 def highlight_text_with_status(pos: int, status: str) -> Text:
     rich_text = Text(f"{pos} ")
-    rich_text += Text(f"{"❌" if status == "in-progress" else "✅"}  ")
+    if status == "in-progress":
+        rich_text += Text(f"❌  ", style="bold red")
+    else:
+        rich_text += Text(f"✔   ", style="bold green")
     return rich_text
 
 
