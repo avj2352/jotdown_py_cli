@@ -3,7 +3,7 @@
 Jotdown CLI, `v1.0.0`. A modern command line Todo application with colorized annotations, written using Python & Typer
 
 ![version](https://img.shields.io/badge/version-1.0.0-blue)
-
+- Link to the original CLI built using Rust - [Click here](https://github.com/avj2352/jotdown_rust_cli)
 - A modern Todo application with extra features!
 
 Jotdown version `1.0.0` CLI features -
@@ -36,8 +36,11 @@ Jotdown version `1.0.0` CLI features -
 
   Environment variables:    
     JOTDOWN_DB_PATH=./jotdown.json  Specify DB path [default: <project_root>/.jotdown-db.json]
-
 ```
+
+## Emojis Used
+
+The following emojis were used in the project - 🏁 |  ✅ | ✏️ | ❌ | 🤔 | ✨ 
 
 ## 🚨 RELEASE v1.0.0 available
 
@@ -46,6 +49,7 @@ Jotdown version `1.0.0` CLI features -
 - to generate the latest build (warning: using the shell script, generates a canary build)
 
 ## Important Links
+- [Original Jotdown CLI using Rust](https://github.com/avj2352/jotdown_rust_cli)
 - [Typer Python CLI](https://typer.tiangolo.com/tutorial/)
 - [Rich - Python color console](https://github.com/Textualize/rich)
 - [Python - JSON serde dataclass - jsonpickle](https://jsonpickle.github.io)
