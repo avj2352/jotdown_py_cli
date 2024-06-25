@@ -9,8 +9,8 @@ Todo handler for commands
 from typing import Optional, List
 
 from models.messages import LIST_EMPTY_NOTIFICATION, LIST_INDEX_OUT_OF_BOUNDS, TODO_ITEM_CHECKED, TODO_ITEM_UNDO, \
-    TODO_ITEMS_RENUMBERED, TODO_ITEMS_MOVE
-from models.todo import Todo
+    TODO_ITEMS_RENUMBERED, TODO_ITEMS_MOVE, TODO_ITEMS_SORTED
+from models.todo import Todo, tag_order_list
 from util.config import get_todo_list, write_todo_list_to_file
 from rich.console import Console
 
@@ -94,6 +94,30 @@ def move(idx1: int, idx2: int):
             # renumber the todo list and write to file
             renumber_todos(False, todo_list)
             return console.print(TODO_ITEMS_MOVE)
+    except IndexError:
+        return console.print(LIST_INDEX_OUT_OF_BOUNDS)
+    except IOError:
+        return console.print(LIST_INDEX_OUT_OF_BOUNDS)
+
+
+def _sort_by_property(obj, order, key):
+    try:
+        return order.index(obj[key])
+    except ValueError:
+        return len(order)
+
+
+def sort_todos():
+    todo_list: List[Todo] = get_todo_list()
+    if todo_list is None or len(todo_list) == 0:
+        return console.print(LIST_EMPTY_NOTIFICATION)
+    try:
+        # 1. sort todos as per tag_order_list
+        todo_list = sorted(todo_list, key=lambda obj: _sort_by_property(obj, tag_order_list, 'tag'))
+        # 2. sort todos as per status order
+        todo_list = sorted(todo_list, key=lambda obj: _sort_by_property(obj, ['in-progress', 'completed'], 'status'))
+        renumber_todos(display=False, todo_list=todo_list)
+        return console.print(TODO_ITEMS_SORTED)
     except IndexError:
         return console.print(LIST_INDEX_OUT_OF_BOUNDS)
     except IOError:

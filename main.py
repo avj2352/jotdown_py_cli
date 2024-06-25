@@ -78,7 +78,7 @@ def renumber():
 # sort todo items
 @app.command(short_help="sort todo items by tags")
 def sort():
-    typer.echo(f"sort todo items by tags")
+    todo_mark_handler.sort_todos()
 
 
 # about todo cli
