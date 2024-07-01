@@ -173,3 +173,11 @@ Typer Dependencies: Ensure all dependencies required by your Typer application (
 Data Files: If your application relies on external data files, make sure to include them in the datas section of the spec file or add them to a directory within the dist folder after building the executable.
 Virtual Environments: It's recommended to develop your application in a virtual environment to isolate dependencies. You can activate the virtual environment before building the executable.
 By following these steps, you can create a standalone executable for your Typer application using PyInstaller, allowing users to run it without needing Python or additional dependencies installed on their machines.
+
+## Regex in Python
+
+The following looks for the first occurance of a "." in a given sentence
+
+```python
+find = re.compile(r"^(.*?)\..*")
+```
