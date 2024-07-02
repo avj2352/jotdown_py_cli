@@ -16,9 +16,11 @@ TODO_ITEMS_CLEAR_PROMPT: str = f"🤔 Are you sure you want to clear todo items?
 TODO_ITEMS_CLEARED: str = f"\n [italic cyan] ✏️ cleared todo items !![/italic cyan]\n"
 TODO_ITEMS_CLEAR_ABORT: str = f"\n [italic cyan]  Aborted clearing todo items !![/italic cyan]\n"
 TODO_ITEMS_MOVE: str = f"\n [italic cyan] ✏️ moved todo item !![/italic cyan]\n"
-TODO_ITEMS_SORTED: str = f"\n [italic cyan] ✏️ sorted todo items !![/italic cyan]\n"
+TODO_ITEM_DESC_UPDATED: str = f"\n [italic cyan] ✏️ updated todo item text !![/italic cyan]\n"
+TODO_ITEM_TAG_UPDATED: str = f"\n [italic cyan] ✏️ updated todo item tag annotation !![/italic cyan]\n"
 
 # mark messages
 TODO_ITEM_CHECKED: str = f"\n [italic cyan] ✏️ todo item completed !![/italic cyan]\n"
 TODO_ITEM_UNDO: str = f"\n [italic cyan] ✏️ uncheck todo item !![/italic cyan]\n"
 TODO_ITEMS_RENUMBERED: str = f"\n [italic cyan] ✏️ todo items renumbered !![/italic cyan]\n"
+TODO_ITEMS_SORTED: str = f"\n [italic cyan]  todo items sorted !![/italic cyan]\n"
