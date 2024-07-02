@@ -56,8 +56,6 @@ def highlight_text_with_colon(text: str) -> Text:
 
 
 # highlight text with status
-# NOTE: on windows cmd prompt / git bash terminal don't support rich emoji fonts
-# so highlighting unicode emoji with red and green color
 def highlight_text_with_status(pos: int, status: str) -> Text:
     rich_text = Text(f"{pos} ")
     if status == "in-progress":
@@ -87,6 +85,16 @@ def highlight_text(item: Todo) -> Text:
     return rich_text
 
 
+# Extract description from tag in sentence
+# if no tag present, return the entire sentence
+def extract_description(input_str: str) -> str:
+    pattern = re.compile(r"^(.*?)\@.*")
+    occurrence = re.match(pattern, input_str)
+    match = occurrence.group(1) if occurrence is not None else None
+    if match is None or match.strip() == "":
+        return input_str
+    return match.strip()
+
 # TESTING
 
 def test_extract_word_with_at():
@@ -95,13 +103,24 @@ def test_extract_word_with_at():
     assert result == "@username"
 
 
-def text_extract_word_with_at_no_tag():
+def test_extract_word_with_at_no_tag():
     text_02 = "No mention of tag here"
     result = extract_word_with_at(text_02)
     assert result is None
 
+def test_extract_descripton_with_tag():
+    text = "This is a description with annotation @important"
+    result = extract_description(text)
+    assert result == "This is a description with annotation"
+
+def test_extract_description_with_no_tag():
+    text = "This is a description without any annotation"
+    result = extract_description(text)
+    assert result == text
 
 if __name__ == "__main__":
     test_extract_word_with_at()
-    text_extract_word_with_at_no_tag()
+    test_extract_word_with_at_no_tag()
+    test_extract_descripton_with_tag()
+    test_extract_description_with_no_tag()
     print("All test cases passed")
