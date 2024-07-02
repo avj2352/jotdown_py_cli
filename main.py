@@ -88,6 +88,18 @@ def about():
     console.print(text)
 
 
+@app.command(short_help="update todo description")
+def update(pos: Annotated[int, typer.Argument(help=f"todo item number or position")],
+           desc: Annotated[str, typer.Argument(help=f"todo item new description")]):
+    todo_add_rm_handler.update_todo_description(pos=pos, text=desc)
+
+
+@app.command(short_help="add/change tag annotation of a particular todo item")
+def tag(pos: Annotated[int, typer.Argument(help=f"todo item number or position")],
+        annotate: Annotated[str, typer.Argument(help=f"new tag annotation")]):
+    todo_add_rm_handler.change_tag_annotation(pos=pos, tag=annotate)
+
+
 if __name__ == "__main__":
     app_init()
     app()
